@@ -7,10 +7,12 @@ const Menu = ({ title, imageUrl, size, history, match }) => (
     className={`${size} menu-item`}
     onClick={() => {
       history.push(match.url + title);
-      console.log(match.url + title);
     }}
   >
-    {/*<Link className="menu-link" to={`/${title}`}></Link>*/}
+    {/* 
+    this is second way to open /path url link 
+    <Link className="menu-link" to={`/${title}`}></Link>
+    */}
     <div
       className="background-image"
       style={{

@@ -7,6 +7,8 @@ import Sneakers from "../Pages/Sneakers/Sneakers";
 import Womens from "../Pages/Womens/Womens";
 import Mens from "../Pages/Mens/Mens";
 import Jackets from "../Pages/Jackets/Jackets";
+import Registration from "../Pages/Registration/Registration";
+import Shop from "../Pages/Shop/Shop";
 
 function RouterURL() {
   return (
@@ -19,6 +21,8 @@ function RouterURL() {
         <Route path="/womens" component={Womens} />
         <Route path="/mens" component={Mens} />
         <Route path="/jackets" component={Jackets} />
+        <Route path="/shop" component={Shop} />
+        <Route path="/registration" component={Registration} />
         <Route component={NotFound} />
       </Switch>
     </div>

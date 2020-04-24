@@ -1,12 +1,12 @@
 import React from "react";
 
-import Directory from "../../Components/Directory/Directory";
+import MenuBox from "../../Components/MenuBox/MenuBox";
 
 import "./Home.scss";
 
 const Home = () => (
   <div className="homepage">
-    <Directory />
+    <MenuBox />
   </div>
 );
 

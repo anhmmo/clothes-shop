@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import "./SignIn.scss";
+import { auth, signInWithGoogle } from "../../firebase/firebase";
 
 class SignIn extends Component {
   constructor(props) {
@@ -13,10 +14,15 @@ class SignIn extends Component {
     };
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-
-    this.setState({ email: "", password: "" });
+    const { email, password } = this.state;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleChange = (event) => {
@@ -48,8 +54,13 @@ class SignIn extends Component {
             label="password"
             required
           />
-          <Button type="submit"> Sign in </Button>
-          <Button onClick={signInWithGoogle}> Sign in with google</Button>
+          <div className="button-container">
+            <Button type="submit"> Sign in </Button>
+            <Button onClick={signInWithGoogle} isGoogleSignIn>
+              {" "}
+              Sign in with google
+            </Button>
+          </div>
         </form>
       </div>
     );

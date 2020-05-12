@@ -13,6 +13,7 @@ const Navigation = ({ currentUser }) => (
       <Link className="option" to="/shop">
         SHOP
       </Link>
+
       {currentUser ? (
         <div className="option" onClick={() => auth.signOut()}>
           SIGN OUT

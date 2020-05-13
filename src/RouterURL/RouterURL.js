@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "../Pages/Home/Home";
 import NotFound from "../Pages/NotFound/NotFound";
 import Hats from "../Pages/Hats/Hats";
@@ -10,7 +10,7 @@ import Jackets from "../Pages/Jackets/Jackets";
 import Registration from "../Pages/Registration/Registration";
 import Shop from "../Pages/Shop/Shop";
 
-function RouterURL() {
+function RouterURL({ currentUser }) {
   return (
     <div>
       <Switch>
@@ -22,7 +22,13 @@ function RouterURL() {
         <Route path="/mens" component={Mens} />
         <Route path="/jackets" component={Jackets} />
         <Route path="/shop" component={Shop} />
-        <Route path="/registration" component={Registration} />
+        <Route
+          exact
+          path="/registration"
+          component={() =>
+            currentUser ? <Redirect to="/" /> : <Registration />
+          }
+        />
         <Route component={NotFound} />
       </Switch>
     </div>

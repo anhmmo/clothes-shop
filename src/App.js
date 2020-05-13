@@ -1,38 +1,30 @@
 import React from "react";
 import "./App.css";
 import RouterURL from "./RouterURL/RouterURL";
+import { connect } from "react-redux";
 import Navigation from "./Pages/Navigation/Navigation";
 import { auth, createUserProfileDocument } from "./firebase/firebase";
+import { setCurrentUser } from "./redux/user/user.actions";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { currentUser: null };
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
           console.log(snapShot.data());
-
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data(),
-              },
-            },
-            () => console.log(this.state.currentUser)
-          );
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
         });
       }
 
-      this.setState({ currentUser: userAuth });
+      setCurrentUser(userAuth);
     });
   }
 
@@ -43,11 +35,19 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navigation currentUser={this.state.currentUser} />
-        <RouterURL />
+        <Navigation currentUser={this.props.currentUser} />
+        <RouterURL currentUser={this.props.currentUser} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,7 +1,11 @@
 import React from "react";
 import "./ItemPreview.scss";
+import Button from "../Button/Button";
+import { connect } from "react-redux";
+import { addItem } from "../../redux/cart/cart.actions";
 
-function ItemPreview({ id, name, price, imageUrl }) {
+function ItemPreview({ item, addItem }) {
+  const { name, price, imageUrl } = item;
   return (
     <div className="collection-item">
       <div
@@ -14,8 +18,15 @@ function ItemPreview({ id, name, price, imageUrl }) {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
+      <Button onClick={() => addItem(item)} inverted={true}>
+        Add to cart
+      </Button>
     </div>
   );
 }
 
-export default ItemPreview;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(ItemPreview);

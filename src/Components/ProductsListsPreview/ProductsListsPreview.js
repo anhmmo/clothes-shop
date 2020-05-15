@@ -8,8 +8,8 @@ function ProductsListsPreview({ title, items }) {
       <div className="preview">
         {items
           .filter((item, idx) => idx < 4)
-          .map(({ id, ...otherItemProps }) => (
-            <ItemPreview key={id} {...otherItemProps} />
+          .map((item) => (
+            <ItemPreview key={item.id} item={item} />
           ))}
       </div>
     </div>

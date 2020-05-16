@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../../firebase/firebase";
-import { ReactComponent as Logo } from "../../Assets/crown.svg";
-import "./Navigation.scss";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { auth } from "../../firebase/firebase";
 import CartIcon from "../../Components/CartIcon/CartIcon";
 import CartDropdown from "../../Components/CartDropdown/CartDropdown";
-import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
+
+import { ReactComponent as Logo } from "../../Assets/crown.svg";
+
+import "./Navigation.scss";
 
 const Navigation = ({ currentUser, hidden }) => (
   <div className="header">

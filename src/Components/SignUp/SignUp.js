@@ -20,7 +20,7 @@ class SignUp extends Component {
     const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
-      alert("password dont match");
+      alert("password don't match");
       return;
     }
 
@@ -29,6 +29,7 @@ class SignUp extends Component {
         email,
         password
       );
+
       await createUserProfileDocument(user, { displayName });
 
       this.setState({

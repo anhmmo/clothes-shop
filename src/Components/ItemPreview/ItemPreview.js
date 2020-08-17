@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
 
-function ItemPreview({ item, addItem }) {
+function ItemPreview({ item, addNewItemToBasket }) {
   const { name, price, imageUrl } = item;
   return (
     <div className="collection-item">
@@ -18,7 +18,7 @@ function ItemPreview({ item, addItem }) {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <Button onClick={() => addItem(item)} inverted={true}>
+      <Button onClick={() => addNewItemToBasket(item)} inverted={true}>
         Add to cart
       </Button>
     </div>
@@ -26,7 +26,7 @@ function ItemPreview({ item, addItem }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  addNewItemToBasket: (item) => dispatch(addItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(ItemPreview);

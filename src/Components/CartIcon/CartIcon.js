@@ -9,15 +9,15 @@ import { ReactComponent as ShoppingIcon } from "../../Assets/shopping-bag.svg";
 
 import "./CartIcon.scss";
 
-const CartIcon = ({ toggleCartHidden, itemCount }) => (
-  <div className="cart-icon" onClick={toggleCartHidden}>
+const CartIcon = ({ hideCartDropdown, itemCount }) => (
+  <div className="cart-icon" onClick={hideCartDropdown}>
     <ShoppingIcon className="shopping-icon" />
     <span className="item-count">{itemCount}</span>
   </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden()),
+  hideCartDropdown: () => dispatch(toggleCartHidden()),
 });
 
 const mapStateToProps = createStructuredSelector({

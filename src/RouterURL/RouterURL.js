@@ -9,6 +9,7 @@ import Mens from "../Pages/Mens/Mens";
 import Jackets from "../Pages/Jackets/Jackets";
 import Registration from "../Pages/Registration/Registration";
 import Shop from "../Pages/Shop/Shop";
+import Checkout from "../Pages/Checkout/Checkout";
 
 function RouterURL({ currentUser }) {
   return (
@@ -22,6 +23,7 @@ function RouterURL({ currentUser }) {
         <Route path="/mens" component={Mens} />
         <Route path="/jackets" component={Jackets} />
         <Route path="/shop" component={Shop} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route
           exact
           path="/registration"

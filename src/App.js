@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import RouterURL from "./RouterURL/RouterURL";
 import { connect } from "react-redux";
 import Navigation from "./Pages/Navigation/Navigation";

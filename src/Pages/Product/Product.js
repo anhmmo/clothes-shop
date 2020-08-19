@@ -7,8 +7,10 @@ import { selectCollection } from "../../redux/shop/shop.selector";
 
 import "./Product.scss";
 
-const Product = ({ collection }) => {
+const Product = ({ collection, match }) => {
   const { title, items } = collection;
+  //console.log(collection);
+  // console.log(match);
   return (
     <div className="collection-page">
       <h2 className="title">{title}</h2>
@@ -21,8 +23,11 @@ const Product = ({ collection }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.collectionId)(state),
-});
+const mapStateToProps = (state, ownProps) => {
+  //console.log(state);
+  return {
+    collection: selectCollection(ownProps.match.params.categoryURL)(state),
+  };
+};
 
 export default connect(mapStateToProps)(Product);

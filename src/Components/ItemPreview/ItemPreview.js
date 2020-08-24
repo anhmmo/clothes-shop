@@ -1,29 +1,33 @@
 import React from "react";
-import "./ItemPreview.scss";
-import Button from "../Button/Button";
+
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
 
-function ItemPreview({ item, addNewItemToBasket }) {
+import {
+  CollectionItemContainer,
+  CollectionFooterContainer,
+  AddButton,
+  BackgroundImage,
+  NameContainer,
+  PriceContainer,
+} from "./ItemPreviewStyles";
+
+const ItemPreview = ({ item, addNewItemToBasket }) => {
   const { name, price, imageUrl } = item;
+
   return (
-    <div className="collection-item">
-      <div
-        className="image"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <div className="collection-footer">
-        <span className="name">{name}</span>
-        <span className="price">{price}</span>
-      </div>
-      <Button onClick={() => addNewItemToBasket(item)} inverted={true}>
+    <CollectionItemContainer>
+      <BackgroundImage className="image" imageUrl={imageUrl} />
+      <CollectionFooterContainer>
+        <NameContainer>{name}</NameContainer>
+        <PriceContainer>{price}</PriceContainer>
+      </CollectionFooterContainer>
+      <AddButton onClick={() => addNewItemToBasket(item)} inverted>
         Add to cart
-      </Button>
-    </div>
+      </AddButton>
+    </CollectionItemContainer>
   );
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   addNewItemToBasket: (item) => dispatch(addItem(item)),

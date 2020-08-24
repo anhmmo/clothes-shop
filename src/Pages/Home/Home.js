@@ -2,12 +2,12 @@ import React from "react";
 
 import MenuBox from "../../Components/MenuBox/MenuBox";
 
-import "./Home.scss";
+import { HomeStyle } from "./HomeStyles";
 
 const Home = () => (
-  <div className="homepage">
+  <HomeStyle>
     <MenuBox />
-  </div>
+  </HomeStyle>
 );
 
 export default Home;

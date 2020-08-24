@@ -7,12 +7,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 
-import styled from "styled-components";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-const TextStyles = styled.div`
-  color: red;
-  border: ${(props) => (props.isActive ? "5px solid blue" : "2px solid red")};
-`;
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -46,7 +41,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <TextStyles isActive={true}>SAMPLE USE OF STYLED-COMPONENTS</TextStyles>
         <Navigation currentUser={this.props.currentUser} />
         <RouterURL currentUser={this.props.currentUser} />
       </div>
